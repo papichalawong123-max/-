@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="th" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คู่มือและแดชบอร์ดการขยายพันธุ์กะเพรา</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Sarabun & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Sarabun', 'Inter', sans-serif;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-emerald-50 via-teal-50 to-green-100 min-h-full text-slate-800 antialiased flex flex-col">
+
+    <!-- Top Navigation Bar -->
+    <header class="bg-white/80 backdrop-blur-md shadow-sm border-b border-emerald-100 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white shadow-md shadow-emerald-200">
+                    <i class="fa-solid fa-seedling text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold bg-gradient-to-r from-emerald-700 to-teal-600 bg-clip-text text-transparent">Holy Basil Hub</h1>
+                    <p class="text-xs text-slate-500 hidden sm:block">แดชบอร์ดคู่มือการขยายพันธุ์กะเพรามืออาชีพ</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                    <span class="w-2 h-2 mr-1.5 bg-emerald-500 rounded-full animate-pulse"></span> ระบบพร้อมใช้งาน
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 flex flex-col gap-6">
+
+        <!-- Hero Welcome Banner -->
+        <section class="bg-gradient-to-r from-emerald-700 via-teal-700 to-green-800 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+            <div class="relative z-10 max-w-2xl">
+                <span class="bg-emerald-600/60 border border-emerald-400/30 text-emerald-100 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">คู่มือเกษตรอินทรีย์ยุคใหม่</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold mt-3 tracking-tight">เคล็ดลับการขยายพันธุ์กะเพราให้งอกงาม 3 วิธีหลัก</h2>
+                <p class="text-emerald-100 mt-2 text-sm sm:text-base leading-relaxed">เลือกวิธีที่เหมาะกับพื้นที่และเวลาของคุณ ตั้งแต่การปักชำกิ่งที่รวดเร็ว จนถึงการเพาะเมล็ดแบบควบคุมความชื้น เพิ่มอัตราการรอดและผลผลิตใบกะเพราที่สมบูรณ์</p>
+            </div>
+            <div class="relative z-10 flex flex-wrap gap-3">
+                <button onclick="switchTab('tab1')" class="px-4 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl text-sm font-medium transition backdrop-blur-sm flex items-center gap-2">
+                    <i class="fa-solid fa-scissors"></i> ปักชำกิ่ง
+                </button>
+                <button onclick="switchTab('tab2')" class="px-4 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl text-sm font-medium transition backdrop-blur-sm flex items-center gap-2">
+                    <i class="fa-solid fa-seedling"></i> เพาะเมล็ด
+                </button>
+                <button onclick="switchTab('tab3')" class="px-4 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl text-sm font-medium transition backdrop-blur-sm flex items-center gap-2">
+                    <i class="fa-solid fa-box-archive"></i> ควบแน่น
+                </button>
+            </div>
+        </section>
+
+        <!-- Navigation Tabs Bar -->
+        <div class="bg-white p-1.5 rounded-2xl shadow-sm border border-slate-200/80 flex flex-col sm:flex-row gap-2">
+            <button onclick="switchTab('tab1')" id="btn-tab1" class="tab-btn flex-1 py-3 px-4 rounded-xl text-sm font-semibold transition flex items-center justify-center gap-2.5 bg-emerald-600 text-white shadow-md shadow-emerald-200">
+                <i class="fa-solid fa-scissors text-base"></i>
+                <span>วิธีที่ 1: การปักชำกิ่ง</span>
+            </button>
+            <button onclick="switchTab('tab2')" id="btn-tab2" class="tab-btn flex-1 py-3 px-4 rounded-xl text-sm font-semibold transition flex items-center justify-center gap-2.5 text-slate-600 hover:bg-slate-100">
+                <i class="fa-solid fa-seedling text-base"></i>
+                <span>วิธีที่ 2: เพาะเมล็ดและย้ายกล้า</span>
+            </button>
+            <button onclick="switchTab('tab3')" id="btn-tab3" class="tab-btn flex-1 py-3 px-4 rounded-xl text-sm font-semibold transition flex items-center justify-center gap-2.5 text-slate-600 hover:bg-slate-100">
+                <i class="fa-solid fa-box-archive text-base"></i>
+                <span>วิธีที่ 3: เพาะเมล็ดแบบควบแน่น</span>
+            </button>
+        </div>
+
+        <!-- TAB CONTENT AREA -->
+        <div class="space-y-6">
+
+            <!-- TAB 1: การปักชำกิ่ง -->
+            <div id="tab1" class="tab-content active space-y-6">
+                <!-- Overview Header Card -->
+                <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+                    <div class="lg:col-span-2 space-y-3">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-emerald-50 text-emerald-700 text-xs font-semibold">
+                            <i class="fa-solid fa-star text-amber-500"></i> ยอดนิยมสูงสุด • โตไว • พันธุ์แท้ไม่กลาย
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900">วิธีที่ 1: การปักชำกิ่ง (Stem Cuttings)</h3>
+                        <p class="text-slate-600 leading-relaxed">เป็นวิธีที่ได้รับความนิยมสูงสุดในปัจจุบัน เนื่องจากทำได้ง่าย รวดเร็ว ต้นกล้าตั้งตัวไว และได้ลักษณะทางพันธุกรรมเหมือนต้นแม่ทุกประการ เหมาะสำหรับผู้ที่มีกะเพราต้นแม่อยู่แล้วและต้องการขยายเพิ่มอย่างรวดเร็ว</p>
+                        <div class="flex flex-wrap gap-4 pt-2 text-sm text-slate-500">
+                            <div class="flex items-center gap-1.5"><i class="fa-regular fa-clock text-emerald-600"></i> ระยะเวลารากงอก: 7-10 วัน</div>
+                            <div class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-emerald-600"></i> ความยาก: ง่ายมาก</div>
+                        </div>
+                    </div>
+                    <div class="bg-emerald-50/60 border border-emerald-100 rounded-2xl p-6 flex flex-col items-center justify-center text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-emerald-600 text-white flex items-center justify-center text-2xl shadow-lg shadow-emerald-200 mb-3">
+                            <i class="fa-solid fa-scissors"></i>
+                        </div>
+                        <h4 class="font-bold text-emerald-900">อุปกรณ์หลัก</h4>
+                        <p class="text-xs text-emerald-700 mt-1">กิ่งพันธุ์กึ่งแก่กึ่งอ่อน, กรรไกรตัดแต่งกิ่ง, วัสดุปักชำระบายน้ำดี</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Steps & Checklist -->
+                <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80">
+                    <div class="flex items-center justify-between mb-6">
+                        <h4 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-list-check text-emerald-600"></i> ขั้นตอนการปักชำแบบละเอียด
+                        </h4>
+                        <span class="text-xs text-slate-400">คลิกเครื่องหมายถูกเพื่อเช็คลิสต์ความคืบหน้า</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Step 1 -->
+                        <div class="step-card bg-slate-50 hover:bg-emerald-50/30 border border-slate-200 rounded-2xl p-4 sm:p-5 transition flex items-start gap-4">
+                            <input type="checkbox" class="mt-1.5 w-5 h-5 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 cursor-pointer">
+                            <div class="flex-1">
+                                <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-md">ขั้นตอนที่ 1</span>
+                                <h5 class="font-bold text-slate-900 mt-1">การคัดเลือกกิ่งพันธุ์</h5>
+                                <p class="text-sm text-slate-600 mt-1">เลือกกิ่งกะเพราที่ไม่แก่จัดและไม่อ่อนจนเกินไป (กิ่งกึ่งแก่กึ่งอ่อน มีเปลือกเริ่มเป็นสีน้ำตาลอ่อนๆ แต่ยังมีความอวบน้ำ) หลีกเลี่ยงกิ่งที่เป็นโรค ใบเหลือง หรือกิ่งที่มีดอก</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="step-card bg-slate-50 hover:bg-emerald-50/30 border border-slate-200 rounded-2xl p-4 sm:p-5 transition flex items-start gap-4">
+                            <input type="checkbox" class="mt-1.5 w-5 h-5 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 cursor-pointer">
+                            <div class="flex-1">
+                                <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-md">ขั้นตอนที่ 2</span>
+                                <h5 class="font-bold text-slate-900 mt-1">การเตรียมกิ่งสำหรับปักชำ</h5>
+                                <p class="text-sm text-slate-600 mt-1">ตัดกิ่งแม่พันธุ์ให้มีความยาวประมาณ 5–10 เซนติเมตร (ประมาณ 3-4 ข้อใบ) ใช้กรรไกรตัดแต่งกิ่งเด็ดใบส่วนล่างออกให้หมด เหลือไว้เพียงใบส่วนยอดประมาณ 2-3 ใบคู่บนสุด เพื่อลดการคายน้ำและการสังเคราะห์แสงในช่วงที่ยังไม่มีราก</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="step-card bg-slate-50 hover:bg-emerald-50/30 border border-slate-200 rounded-2xl p-4 sm:p-5 transition flex items-start gap-4">
+                            <input type="checkbox" class="mt-1.5 w-5 h-5 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 cursor-pointer">
+                            <div class="flex-1">
+                                <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-md">ขั้นตอนที่ 3</span>
+                                <h5 class="font-bold text-slate-900 mt-1">การเตรียมวัสดุปักชำ</h5>
+                                <p class="text-sm text-slate-600 mt-1">ผสมดินปลูกที่ระบายน้ำได้ดี เช่น ดินร่วน 2 ส่วน / ปุ๋ยหมักหรือปุ๋ยคอก 1 ส่วน / แกลบดิบหรือขุยมะพร้าวสับ 1 ส่วน คลุกเคล้าให้เข้ากัน และรดน้ำวัสดุปลูกให้ชุ่มแต่ไม่แฉะ</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="step-card bg-slate-50 hover:bg-emerald-50/30 border border-slate-200 rounded-2xl p-4 sm:p-5 transition flex items-start gap-4">
+                            <input type="checkbox" class="mt-1.5 w-5 h-5 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 cursor-pointer">
+                            <div class="flex-1">
+                                <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-md">ขั้นตอนที่ 4</span>
+                                <h5 class="font-bold text-slate-900 mt-1">การปักชำลงดิน</h5>
+                                <p class="text-sm text-slate-600 mt-1">นำกิ่งพันธุ์ที่เตรียมไว้ปักลงในดินลึกประมาณ 3 เซนติเมตร (ให้ข้อใบส่วนล่างจมลงไปในดินเพื่อเป็นจุดเกิดราก) เอียงกิ่งทำมุมเล็กน้อย ระยะห่างระหว่างกิ่งประมาณ 10-15 เซนติเมตร</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 5 -->
+                        <div class="step-card bg-slate-50 hover:bg-emerald-50/30 border border-slate-200 rounded-2xl p-4 sm:p-5 transition flex items-start gap-4">
+                            <input type="checkbox" class="mt-1.5 w-5 h-5 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 cursor-pointer">
+                            <div class="flex-1">
+                                <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-md">ขั้นตอนที่ 5</span>
+                                <h5 class="font-bold text-slate-900 mt-1">การดูแลช่วงแรก</h5>
+                                <p class="text-sm text-slate-600 mt-1">นำกระถางหรือแปลงปลูกไปวางไว้ในที่ร่มรำไร หลีกเลี่ยงแดดจัดใน 7 วันแรก รดน้ำสม่ำเสมอทุกวัน เมื่อผ่านไป 7-10 วัน รากจะเริ่มงอกและแตกยอดใหม่ ค่อยๆ ขยับออกมารับแสงแดดเต็มที่</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: การเพาะเมล็ดและการย้ายกล้า -->
+            <div id="tab2" class="tab-content space-y-6">
+                <!-- Overview Header Card -->
+                <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+                    <div class="lg:col-span-2 space-y-3">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-teal-50 text-teal-700 text-xs font-semibold">
+                            <i class="fa-solid fa-seedling text-teal-600"></i> เหมาะกับแปลงปลูกขนาดใหญ่ • รากแก้วแข็งแรง
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900">วิธีที่ 2: การเพาะเมล็ดและการย้ายกล้า (Seed Sowing & Transplanting)</h3>
+                        <p class="text-slate-600 leading-relaxed">เป็นวิธีดั้งเดิม เหมาะสำหรับการปลูกในปริมาณมาก เช่น แปลงเกษตร ได้ต้นที่ระบบรากแข็งแรงตามธรรมชาติ และมีความเสี่ยงเรื่องโรคทางดินน้อยกว่า ได้พุ่มกะเพราที่อายุยืนยาว</p>
+                        <div class="flex flex-wrap gap-4 pt-2 text-sm text-slate-500">
+                            <div class="flex items-center gap-1.5"><i class="fa-regular fa-clock text-teal-600"></i> ระยะเวลากล้าโต: 20-25 วัน</div>
+                            <div class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-teal-600"></i> ความยาก: ปานกลาง</div>
+                        </div>
+                    </div>
+                    <div class="bg-teal-50/60 border border-teal-100 rounded-2xl p-6 flex flex-col items-center justify-center text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-teal-600 text-white flex items-center justify-center text-2xl shadow-lg shadow-teal-200 mb-3">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                        <h4 class="font-bold text-teal-900">อุปกรณ์หลัก</h4>
+                        <p class="text-xs text-teal-700 mt-1">เมล็ดพันธุ์กะเพรา, น้ำอุ่น, แปลงเพาะหรือกระบะ, ฟางข้าวคลุมแปลง</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Steps & Checklist -->
+                <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80">
+                    <div class="flex items-center justify-between mb-6">
+                        <h4 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-list-check text-teal-600"></i> ขั้นตอนการเพาะเมล็ดและย้ายกล้า
+                        </h4>
+                        <span class="text-xs text-slate-400">คลิกเครื่องหมายถูกเพื่อเช็คลิสต์ความคืบหน้า</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Step 1 -->
+                        <div class="step-card bg-slate-50 hover:bg-teal-50/30 border border-slate-200 rounded-2xl p-4 sm:p-5 transition flex items-start gap-4">
+                            <input type="checkbox" class="mt-1.5 w-5 h-5 rounded border-slate-300 text-teal-600 focus:ring-teal-500 cursor-pointer">
+                            <div class="flex-1">
+                                <span class="text-xs font-bold text-teal-700 bg-teal-100 px-2.5 py-0.5 rounded-md">ขั้นตอนที่ 1</span>
+                                <h5 class="font-bold text-slate-900 mt-1">การเตรียมเมล็ดพันธุ์</h5>
+                                <p class="text-sm text-slate-600 mt-1">นำเมล็ดพันธุ์กะเพรามาแช่ในน้ำอุ่น (อุณหภูมิประมาณ 50-55 องศาเซลเซียส) นานประมาณ 15-20 นาที หรือแช่ในน้ำธรรมดา 4-6 ชั่วโมง เพื่อกระตุ้นให้เปลือกเมล็ดนิ่มและเร่งอัตราการงอก</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="step-card bg-slate-50 hover:bg-teal-50/30 border border-slate-200 rounded-2xl p-4 sm:p-5 transition flex items-start gap-4">
+                            <input type="checkbox" class="mt-1.5 w-5 h-5 rounded border-slate-300 text-teal-600 focus:ring-teal-500 cursor-pointer">
+                            <div class="flex-1">
+                                <span class="text-xs font-bold text-teal-700 bg-teal-100 px-2.5 py-0.5 rounded-md">ขั้นตอนที่ 2</span>
+                                <h5 class="font-bold text-slate-900 mt-1">การเตรียมแปลงเพาะ</h5>
+                                <p class="text-sm text-slate-600 mt-1">เตรียมดินร่วนซุยผสมปุ๋ยหมัก ย่อยหน้าดินให้ละเอียดและปรับหน้าดินให้เรียบ พร้อมสำหรับการหว่านเมล็ดในลำดับต่อไป</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="step-card bg-slate-50 hover:bg-teal-50/30 border border-slate-200 rounded-2xl p-4 sm:p-5 transition flex items-start gap-4">
+                            <input type="checkbox" class="mt-1.5 w-5 h-5 rounded border-slate-300 text-teal-600 focus:ring-teal-500 cursor-pointer">
+                            <div class="flex-1">
+                                <span class="text-xs font-bold text-teal-700 bg-teal-100 px-2.5 py-0.5 rounded-md">ขั้นตอนที่ 3</span>
+                                <h5 class="font-bold text-slate-900 mt-1">การหว่านเมล็ดและกลบหน้าดิน</h5>
+                                <p class="text-sm text-slate-600 mt-1">โรยหรือหว่านเมล็ดให้กระจายทั่วแปลงเพาะอย่างสม่ำเสมอ ใช้ดินละเอียด แกลบดำ หรือฟางข้าวแห้งบางๆ กลบหรือคลุมทับเพื่อป้องกันแสงแดดส่องกระทบโดยตรงและรักษาความชื้น</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="step-card bg-slate-50 hover:bg-teal-50/30 border border-slate-200 rounded-2xl p-4 sm:p-5 transition flex items-start gap-4">
+                            <input type="checkbox" class="mt-1.5 w-5 h-5 rounded border-slate-300 text-teal-600 focus:ring-teal-500 cursor-pointer">
+                            <div class="flex-1">
+                                <span class="text-xs font-bold text-teal-700 bg-teal-100 px-2.5 py-0.5 rounded-md">ขั้นตอนที่ 4</span>
+                                <h5 class="font-bold text-slate-900 mt-1">การดูแลช่วงต้นกล้า</h5>
+                                <p class="text-sm text-slate-600 mt-1">รดน้ำด้วยฝักบัวสายฝนละอองละเอียดเช้า-เย็น เมล็ดจะเริ่มงอกและโผล่พ้นดินภายใน 5–7 วันแรก</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 5 -->
+                        <div class="step-card bg-slate-50 hover:bg-teal-50/30 border border-slate-200 rounded-2xl p-4 sm:p-5 transition flex items-start gap-4">
+                            <input type="checkbox" class="mt-1.5 w-5 h-5 rounded border-slate-300 text-teal-600 focus:ring-teal-500 cursor-pointer">
+                            <div class="flex-1">
+                                <span class="text-xs font-bold text-teal-700 bg-teal-100 px-2.5 py-0.5 rounded-md">ขั้นตอนที่ 5</span>
+                                <h5 class="font-bold text-slate-900 mt-1">การย้ายกล้าลงแปลงจริง</h5>
+                                <p class="text-sm text-slate-600 mt-1">เมื่อต้นกล้าอายุประมาณ 20-25 วัน หรือมีใบจริง 3-4 คู่ใบ ให้ถอนแยกหรือย้ายต้นกล้าไปปลูกยังแปลงถาวร ควรทำช่วงเวลาเย็นเพื่อไม่ให้ต้นกล้าเฉาแดด</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: การเพาะเมล็ดแบบควบแน่น -->
+            <div id="tab3" class="tab-content space-y-6">
+                <!-- Overview Header Card -->
+                <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+                    <div class="lg:col-span-2 space-y-3">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-green-50 text-green-700 text-xs font-semibold">
+                            <i class="fa-solid fa-box-archive text-green-600"></i> อัตราการงอกสูง • ควบคุมความชื้นสมบูรณ์
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900">วิธีที่ 3: การเพาะเมล็ดแบบควบแน่น (Controlled Moisture Method)</h3>
+                        <p class="text-slate-600 leading-relaxed">เทคนิคดัดแปลงที่นิยมใช้เพื่อเพิ่มอัตราการรอดของต้นกล้าในระยะเริ่มต้น ควบคุมความชื้นได้ง่าย เหมาะกับผู้ที่ต้องการเพาะเมล็ดจำนวนจำกัดแต่ต้องการันตีเปอร์เซ็นต์การงอกสูง</p>
+                        <div class="flex flex-wrap gap-4 pt-2 text-sm text-slate-500">
+                            <div class="flex items-center gap-1.5"><i class="fa-regular fa-clock text-green-600"></i> ระยะเวลาเปิดถุง: 7-10 วัน</div>
+                            <div class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-green-600"></i> ความยาก: ปานกลาง (มือใหม่ทำได้)</div>
+                        </div>
+                    </div>
+                    <div class="bg-green-50/60 border border-green-100 rounded-2xl p-6 flex flex-col items-center justify-center text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-green-600 text-white flex items-center justify-center text-2xl shadow-lg shadow-green-200 mb-3">
+                            <i class="fa-solid fa-box-archive"></i>
+                        </div>
+                        <h4 class="font-bold text-green-900">อุปกรณ์หลัก</h4>
+                        <p class="text-xs text-green-700 mt-1">ถุงเพาะชำ/แก้วพลาสติกใส, ขุยมะพร้าวละเอียด, ถุงพลาสติกใสครอบ, หนังยาง</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Steps & Checklist -->
+                <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80">
+                    <div class="flex items-center justify-between mb-6">
+                        <h4 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-list-check text-green-600"></i> ขั้นตอนการเพาะแบบควบแน่น
+                        </h4>
+                        <span class="text-xs text-slate-400">คลิกเครื่องหมายถูกเพื่อเช็คลิสต์ความคืบหน้า</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Step 1 -->
+                        <div class="step-card bg-slate-50 hover:bg-green-50/30 border border-slate-200 rounded-2xl p-4 sm:p-5 transition flex items-start gap-4">
+                            <input type="checkbox" class="mt-1.5 w-5 h-5 rounded border-slate-300 text-green-600 focus:ring-green-500 cursor-pointer">
+                            <div class="flex-1">
+                                <span class="text-xs font-bold text-green-700 bg-green-100 px-2.5 py-0.5 rounded-md">ขั้นตอนที่ 1</span>
+                                <h5 class="font-bold text-slate-900 mt-1">การเตรียมวัสดุเพาะในถุงหรือแก้ว</h5>
+                                <p class="text-sm text-slate-600 mt-1">เจาะรูระบายน้ำที่ก้นถุงเพาะชำพลาสติกหรือแก้วพลาสติกใส ใส่ดินปลูกผสมขุยมะพร้าวละเอียด (ผ่านการแช่น้ำล้างสารแทนนินแล้ว) เติมเกือบเต็มถุง รดน้ำให้ชุ่มชื้นแต่ไม่แฉะ</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="step-card bg-slate-50 hover:bg-green-50/30 border border-slate-200 rounded-2xl p-4 sm:p-5 transition flex items-start gap-4">
+                            <input type="checkbox" class="mt-1.5 w-5 h-5 rounded border-slate-300 text-green-600 focus:ring-green-500 cursor-pointer">
+                            <div class="flex-1">
+                                <span class="text-xs font-bold text-green-700 bg-green-100 px-2.5 py-0.5 rounded-md">ขั้นตอนที่ 2</span>
+                                <h5 class="font-bold text-slate-900 mt-1">การหยอดเมล็ด</h5>
+                                <p class="text-sm text-slate-600 mt-1">นำเมล็ดกะเพราที่คัดแล้วหยอดลงไปหลุมละ 2-3 เมล็ด ความลึกประมาณ 0.5 เซนติเมตร กลบด้วยดินบางๆ และพรมน้ำซ้ำเบาๆ ด้วยสเปรย์</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="step-card bg-slate-50 hover:bg-green-50/30 border border-slate-200 rounded-2xl p-4 sm:p-5 transition flex items-start gap-4">
+                            <input type="checkbox" class="mt-1.5 w-5 h-5 rounded border-slate-300 text-green-600 focus:ring-green-500 cursor-pointer">
+                            <div class="flex-1">
+                                <span class="text-xs font-bold text-green-700 bg-green-100 px-2.5 py-0.5 rounded-md">ขั้นตอนที่ 3</span>
+                                <h5 class="font-bold text-slate-900 mt-1">การสร้างภาวะควบแน่น (เร่งการงอก)</h5>
+                                <p class="text-sm text-slate-600 mt-1">ใช้ถุงพลาสติกใสสวมครอบปากภาชนะทั้งหมดแล้วมัดหนังยางให้แน่น วิธีนี้จะช่วยกักเก็บไอความชื้นและคาร์บอนไดออกไซด์ไว้ภายใน ทำให้ความชื้นคงที่โดยไม่ต้องรดน้ำเพิ่ม</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="step-card bg-slate-50 hover:bg-green-50/30 border border-slate-200 rounded-2xl p-4 sm:p-5 transition flex items-start gap-4">
+                            <input type="checkbox" class="mt-1.5 w-5 h-5 rounded border-slate-300 text-green-600 focus:ring-green-500 cursor-pointer">
+                            <div class="flex-1">
+                                <span class="text-xs font-bold text-green-700 bg-green-100 px-2.5 py-0.5 rounded-md">ขั้นตอนที่ 4</span>
+                                <h5 class="font-bold text-slate-900 mt-1">การเปิดรับแสงและการคัดเลือก</h5>
+                                <p class="text-sm text-slate-600 mt-1">วางในบริเวณแสงรำไร เมื่อต้นกล้าสูงประมาณ 2-3 เซนติเมตร (7-10 วัน) ให้เอาถุงครอบออกเพื่อให้ปรับตัว เมื่อโตแข็งแรง (ราว 20 วัน) คัดเลือกต้นที่สมบูรณ์ที่สุดไว้ถุงละ 1 ต้น</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Pro-Tips Footer Card -->
+        <section class="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200/70 rounded-3xl p-6 sm:p-8 shadow-sm">
+            <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-xl shadow-md shadow-amber-200 shrink-0">
+                    <i class="fa-solid fa-lightbulb"></i>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold text-amber-900">เกร็ดความรู้และเคล็ดลับเพิ่มเติม (Pro Tips)</h4>
+                    <p class="text-sm text-amber-800/80 mt-1 leading-relaxed">
+                        การตัดแต่งยอด (Pruning) ของต้นกะเพราเมื่อเริ่มโต จะช่วยกระตุ้นให้กะเพราแตกกิ่งกว้างด้านข้างออกไปจำนวนมาก ทำให้ได้พุ่มแน่น ใบดก และชะลอการออกดอกได้ดีเยี่ยม นอกจากนี้ควรรดน้ำอย่างสม่ำเสมอในเวลาเช้าหรือเย็น
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-6 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500">
+            &copy; 2026 Holy Basil Propagation Dashboard • พัฒนาขึ้นเพื่อการเรียนรู้และการเกษตรกรไทย
+        </div>
+    </footer>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        function switchTab(tabId) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(el => el.classList.remove('active'));
+
+            // Remove active style from all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.className = "tab-btn flex-1 py-3 px-4 rounded-xl text-sm font-semibold transition flex items-center justify-center gap-2.5 text-slate-600 hover:bg-slate-100";
+            });
+
+            // Show target tab content
+            document.getElementById(tabId).classList.add('active');
+
+            // Highlight target button with matching color scheme
+            const activeBtn = document.getElementById('btn-' + tabId);
+            if (tabId === 'tab1') {
+                activeBtn.className = "tab-btn flex-1 py-3 px-4 rounded-xl text-sm font-semibold transition flex items-center justify-center gap-2.5 bg-emerald-600 text-white shadow-md shadow-emerald-200";
+            } else if (tabId === 'tab2') {
+                activeBtn.className = "tab-btn flex-1 py-3 px-4 rounded-xl text-sm font-semibold transition flex items-center justify-center gap-2.5 bg-teal-600 text-white shadow-md shadow-teal-200";
+            } else if (tabId === 'tab3') {
+                activeBtn.className = "tab-btn flex-1 py-3 px-4 rounded-xl text-sm font-semibold transition flex items-center justify-center gap-2.5 bg-green-600 text-white shadow-md shadow-green-200";
+            }
+
+            // Scroll smoothly to top of content
+            window.scrollTo({ top: 150, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>
